@@ -28,7 +28,7 @@ class Helper
      */
     public static function chineseNumToArabicNum($str): string
     {
-        preg_match_all('/./u', config('tao.captcha.codeType.chars'), $map);
+        preg_match_all('/./u', config('captcha.codeType.chars'), $map);
         $len = count($map[0]);
         $list = [];
         for ($i = 0; $i < $len; $i++) {
