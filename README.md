@@ -43,7 +43,7 @@ You will get the result like:
 * Validate the captcha
 ```javascript
 axios
-  .post('your_domain/api/v1/captcha/image')
+  .post('your_domain/api/v1/captcha/image',[post_data])
   .then(response => (this.validation = response.data))
 ```
 
