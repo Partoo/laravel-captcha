@@ -11,7 +11,7 @@ abstract class AbstractCode
 
     public function __construct()
     {
-        $this->num_config = config('tao.captcha.codeType');
+        $this->num_config = config('captcha.codeType');
     }
 
     public function generate(): array
