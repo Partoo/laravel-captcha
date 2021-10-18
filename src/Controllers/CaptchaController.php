@@ -21,8 +21,8 @@ class CaptchaController extends Controller
     public function validate(Request $request): \Illuminate\Http\JsonResponse
     {
         $key = $request->input('key');
-        $realCode = Cache::get($key);
-        $success = Captcha::validate($key, $realCode);
+        $result = $request->input('result');
+        $success = Captcha::validate($key, $result);
         if ($success) {
             return response()->json([
                 'message' => trans('tao.captcha::message.captcha_success'),
