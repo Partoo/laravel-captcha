@@ -24,14 +24,18 @@ class CaptchaController extends Controller
         $result = $request->input('result');
         $success = Captcha::validate($key, $result);
         if ($success) {
+            // Store the key to cache in 5 minutes, You can use it for next step.
+            // EXAMPLE: Before send SMS, you can check the key existence, if not then reject the request.
+            Cache::put($key, 'passed', now()->addMinutes(5));
+
             return response()->json([
                 'message' => trans('tao.captcha::message.captcha_success'),
-                'status' => 201
+                'status' => 201,
             ]);
         }
         return response()->json([
             'message' => trans('tao.captcha::message.captcha_error'),
-            'status' => 403
-        ], 403);
+            'status' => 422
+        ], 422);
     }
 }
